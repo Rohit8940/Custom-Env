@@ -8,6 +8,7 @@ function App() {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [expandedNodes, setExpandedNodes] = useState(new Set());
+  const API_URL = import.meta.env.VITE_API_URL
 
   const handleAdd = () => {
     if (input.trim()) {
@@ -34,7 +35,7 @@ function App() {
     if (packages.length === 0) return;
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:8000/get-wheels", {
+      const res = await axios.post(`${API_URL}/get-wheels`, {
         packages,
       });
       setTreeData(res.data);
